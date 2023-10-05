@@ -1,8 +1,10 @@
 <script setup lang="ts">
 </script>
 
-<template>
+<template lang="pug">
+.root
+  h1 チャット
 </template>
 
-<style scoped>
+<style lang="sass" scoped>
 </style>
