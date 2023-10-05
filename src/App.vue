@@ -15,7 +15,11 @@ const messages = ref<Message[]>([]);
 const sendMessage = ref('');
 
 const unsub = onSnapshot(query(collection(db, 'chat')), (snapshot: QuerySnapshot) => {
-  console.log(snapshot);
+  messages.value.splice(0);
+  snapshot.forEach(doc => {
+    messages.value.push(doc.data() as Message);
+  })
+  messages.value.sort((a, b) => a.id > b.id ? 1 : -1);
 });
 
 onUnmounted(() => unsub);
@@ -45,7 +49,7 @@ const onSend = async (e: Event) => {
         th Message
     tbody
       tr(v-for="(msg, index) in messages", :key="index")
-        td {{ message }}
+        td {{ msg.message }}
   hr
   form(@submit="onSend")
     input(type='text' v-model="sendMessage")
