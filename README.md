@@ -1,0 +1,2 @@
+# FireStoreChatTest
+Firestoreを使ったチャットシステムの実験
